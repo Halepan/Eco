@@ -1,14 +1,14 @@
-import vosk
-import pyaudio
+from vosk import KaldiRecognizer,Model
+from pyaudio import PyAudio,paInt16
 import json
 
 class Voice:
   def __init__(self,model_path="app/models/vosk-model-small-es-0.42"):
       self.model_path = model_path
-      self.model = vosk.Model(self.model_path)
-      self.recognizer= vosk.KaldiRecognizer(self.model, 16000)
-      self.p = pyaudio.PyAudio()
-      self.stream = self.p.open(format=pyaudio.paInt16,channels=1,rate=16000,input= True,frames_per_buffer=1024)
+      self.model = Model(self.model_path)
+      self.recognizer= KaldiRecognizer(self.model, 16000)
+      self.p = PyAudio()
+      self.stream = self.p.open(format=paInt16,channels=1,rate=16000,input= True,frames_per_buffer=1024)
 
   def Voz_a_Txt(self,cierre):
       print("Escuchando...")

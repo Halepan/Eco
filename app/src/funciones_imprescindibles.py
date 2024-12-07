@@ -1,12 +1,17 @@
-from re import *
-
 from re import IGNORECASE,findall
 
 class TransatorType():
  def __init__(self):
-  self.centas = ["cien","ciento","docientos","trecientos","cuatrocientos",
-               "quinientos","seicientos","setecientos","ochocientos","novecientos","mil","menos"]
-  self.decenascompuestas = [
+  self.single_numbers = [
+   "cien","ciento","docientos","trecientos","cuatrocientos",
+   "quinientos","seicientos","setecientos","ochocientos","novecientos","mil","menos"
+   "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete",
+   "dieciocho", "diecinueve", "veinte", "veintiuno","veintidós","veintitrés", 
+   "veinticuatro", "veinticinco", "veintiséis", "veintisiete", "veintiocho", "veintinueve", 
+   "treinta", "cuarenta", "cincuenta", "sesenta","setenta", "ochenta", "noventa","cuarto",
+   "media","una","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"]
+  
+  self.compuest_numbers = [
     "treinta y uno", "treinta y dos", "treinta y tres", "treinta y cuatro",
     "treinta y cinco", "treinta y seis", "treinta y siete", 
     "treinta y ocho", "treinta y nueve",
@@ -27,21 +32,8 @@ class TransatorType():
     "ochenta y ocho", "ochenta y nueve",
     "noventa y uno", "noventa y dos", "noventa y tres", "noventa y cuatro",
     "noventa y cinco", "noventa y seis", "noventa y siete", 
-    "noventa y ocho", "noventa y nueve"
-]
+    "noventa y ocho", "noventa y nueve"]
   
-  self.decenas = [
-    "diez", "once", "doce", "trece", "catorce", "quince", 
-    "dieciséis", "diecisiete", "dieciocho", "diecinueve", 
-    "veinte", "veintiuno", "veintidós", "veintitrés", 
-    "veinticuatro", "veinticinco", "veintiséis", 
-    "veintisiete", "veintiocho", "veintinueve", 
-    "treinta", "cuarenta", "cincuenta", "sesenta", 
-    "setenta", "ochenta", "noventa","cuarto","media"
-]
-  
-  self.unidades =["una","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"]
-
   self.diccionary_num= {"cero": 0,"uno": 1,"dos": 2,"tres": 3,"cuatro": 4,"cinco": 5,"seis": 6,"siete": 7,
         "ocho": 8,"nueve": 9,"diez": 10,"once": 11,"doce": 12,"trece": 13,"catorce": 14,"quince": 15,
         "dieciséis": 16,"diecisiete": 17,"dieciocho": 18,"diecinueve": 19,"veinte": 20,"veintiuno": 21,
@@ -66,33 +58,27 @@ class TransatorType():
         "doscientos": 200,"trescientos": 300,"cuatrocientos": 400,"quinientos": 500,"seiscientos": 600,
         "setecientos": 700,"ochocientos": 800,"novecientos": 900,"mil": 1000,
     }
-
-
-
   self.frase = " "
 
 
  def __RecopilatorNumString(self):
-  patron = self.centas
-  patron.extend(self.decenascompuestas )
-  patron.extend(self.decenas)
-  patron.extend(self.unidades)
+  patron = self.compuest_numbers
+  patron.extend(self.single_numbers )
    
   return findall("|".join(patron),self.frase,IGNORECASE)
       
  def __TransiciontoInt(self,numeros_en_palabras):
   print(numeros_en_palabras)
   numeros = []
-
   for num in numeros_en_palabras:
    print(self.diccionary_num[num])
    numeros.append(self.diccionary_num[num])
-
-  return {
-    'frase': self.frase, 'numeros': numeros # Devuelve la lista de números
-  }
+  return {'frase': self.frase, 'numeros': numeros }# Devuelve la lista de números
  
- def get_Time(self):
+ def get_Time_int(self):
+  pass
+ 
+ def get_Time_str(self):
   pass
 
  def getStringInt(self,frase):
