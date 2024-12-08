@@ -3,8 +3,8 @@ class ComandVoz():#Aqui se ejcutaran lo comandos predefinidos y se agregaran nue
     def __init__(self):#constructor
         self.comand_clock= {"1":self.__Clock,"dime la hora": "time","qué hora es":"time",
 "avisame dentro de":"temporizador","avisame en":"temporizador","pon un temporizador de":"temporizador",
-"despiertame dentro de":"temporizador","despiertame de aquí a":"temporizador","avisame a las":"alarma",
-"despiertame a las":"alarma","pon una alarma ,clave_escuchada":"alarma"}
+"despiertame dentro de":"temporizador","despiertame de aquí a":"temporizador","pon una alarma para dentro de ":"temporizador",
+"avisame a las":"alarma","despiertame a las":"alarma","pon una alarma ":"alarma"}
         self.comand_music={"1":self.__Music,"para la música": "Stop"}
         self.comand_video={"1":self.__Video}
         self.comand_call={"1":self.__Call}
